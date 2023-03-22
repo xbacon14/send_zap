@@ -1,0 +1,7 @@
+CREATE TABLE BS_CONTATO (
+    id INT NOT NULL PRIMARY KEY AUTOINCREMENT,
+    nome TEXT,
+    telefone TEXT,
+    endereco TEXT,
+    classificacao TEXT
+)

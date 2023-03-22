@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "399923654456",
+    "project_id": "zap-send-69090",
+    "storage_bucket": "zap-send-69090.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399923654456:android:c5b464e463406d445d5bcd",
+        "android_client_info": {
+          "package_name": "py.com.flextech.send_zap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399923654456-7bi9nl83uk58avs86iarrttmfij8b8cn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmo_B3wi60ueEX4bULF4FNakdqC2awpeE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399923654456-7bi9nl83uk58avs86iarrttmfij8b8cn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "399923654456-v7gn7duqr37m5buc1r5g4l2rjue8r2qn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sendZap"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

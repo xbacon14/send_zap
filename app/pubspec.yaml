@@ -1,0 +1,48 @@
+name: send_zap
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  fluent_ui: ^4.4.1
+  google_fonts: ^4.0.3
+  dio: ^5.0.2
+  device_frame: ^1.1.0
+  flutter_mobx: ^2.0.6+5
+  drift: ^2.5.0
+  sqlite3_flutter_libs: ^0.5.0
+  path_provider: ^2.0.0
+  path: ^1.8.2
+  flutter_modular: ^5.0.3
+  flutter_dotenv: ^5.0.2
+  connectivity_plus: ^2.3.5
+  flutter_dropdown_alert: ^1.0.7
+  flutter_secure_storage: ^8.0.0
+  socket_io_client: ^2.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.3.3
+  mobx_codegen: ^2.1.1
+  drift_dev: ^2.5.2
+  
+flutter:
+
+  uses-material-design: false
+
+  assets:
+    - .env
+    - assets/whatsapp/profile.png
+    - assets/whatsapp/background.png
+  #   - images/a_dot_ham.jpeg
+
+scripts:
+  mobx: fvm flutter pub run build_runner watch --delete-conflicting-outputs
