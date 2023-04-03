@@ -1,2 +1,2 @@
 #!/bin/bash
-docker-compose up --build myzap_2dev
+docker-compose up --build =zap_server_2prod

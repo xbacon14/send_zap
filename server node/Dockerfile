@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 AS myzap_2dev
+FROM ubuntu:18.04 AS zap_server_2dev
 WORKDIR /usr/src/app
 RUN apt-get update && apt-get install -y \
     gconf-service \
@@ -51,12 +51,12 @@ RUN apt-get install curl -y \
 EXPOSE 3332
 CMD npm install ; node index.js
 
-FROM myzap_2dev AS myzap_2prod
+FROM zap_server_2dev AS zap_server_2prod
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 COPY . .
 #RUN rm -rf .env
 COPY .env.prod ./.env
-EXPOSE 3332
+EXPOSE 3333
 CMD node index.js
