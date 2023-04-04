@@ -7,7 +7,7 @@ services:
     container_name: zap_server_2dev
     working_dir: /usr/src/app
     volumes:
-      - zap_server_2dev:/usr/src/app
+      - ./:/usr/src/app
     ports:
       - 3333:3333
     stdin_open: true # docker run -i
@@ -22,7 +22,6 @@ services:
       context: .
       target: zap_server_2prod
     container_name: zap_server_2prod
-    #    image: gcr.io/maisagil/zap_server
     ports:
       - 3333:3333
     networks:

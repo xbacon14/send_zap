@@ -1,5 +1,6 @@
 FROM ubuntu:18.04 AS zap_server_2dev
-WORKDIR /usr/src/app
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app/
 RUN apt-get update && apt-get install -y \
     gconf-service \
     libasound2 \
@@ -46,17 +47,18 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get install curl -y \
     && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && apt-get install -y \
-    nodejs
+    nodejs && apt-get install chromium-browser xvfb -y \ 
+    && npm i -g lighthouse -y
 
 EXPOSE 3332
-CMD npm install ; node index.js
+CMD npm install --verbose --foreground-scripts --ignore-scripts=false --platform=linux --arch=x64 sharp ; node index.js
 
 FROM zap_server_2dev AS zap_server_2prod
-WORKDIR /usr/src/app
-COPY package*.json ./
+WORKDIR /usr/src/app/
+COPY package.json ./
 RUN npm install
-COPY . .
+COPY . /usr/src/app/
 #RUN rm -rf .env
 COPY .env.prod ./.env
 EXPOSE 3333
-CMD node index.js
+CMD npm start
