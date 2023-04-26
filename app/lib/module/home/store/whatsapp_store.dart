@@ -11,6 +11,9 @@ abstract class WhatsappStoreBase with Store {
   WhatsappStoreBase({required this.whatsappRepository});
   final WhatsappRepository whatsappRepository;
 
+  @observable
+  bool selectAll = false;
+
   Future<void> sendText(
       {required String text, required List<Contato> contatos}) async {
     final storage = FlutterSecureStorage();

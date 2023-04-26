@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.11.2"
+  archive:
+    dependency: transitive
+    description:
+      name: archive
+      sha256: "0c8368c9b3f0abbc193b9d6133649a614204b528982bebc7026372d61677ce3a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.3.7"
   args:
     dependency: transitive
     description:
@@ -281,6 +289,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.5.2"
+  equatable:
+    dependency: transitive
+    description:
+      name: equatable
+      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.5"
+  excel_facility:
+    dependency: transitive
+    description:
+      name: excel_facility
+      sha256: "8766c481efa1896178417475fcf90027e0c5c3efd33c9049b728b0a3638d07d0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
+  excel_to_json:
+    dependency: "direct main"
+    description:
+      name: excel_to_json
+      sha256: "8fc8a053967ced7baafc07586ba83c6c02ebb1dbbde1b5484612d5cb3197af5e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   fake_async:
     dependency: transitive
     description:
@@ -305,6 +337,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.4"
+  file_picker:
+    dependency: "direct main"
+    description:
+      name: file_picker
+      sha256: b85eb92b175767fdaa0c543bf3b0d1f610fe966412ea72845fe5ba7801e763ff
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.2.10"
   fixnum:
     dependency: transitive
     description:
@@ -371,6 +411,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.2"
+  flutter_plugin_android_lifecycle:
+    dependency: transitive
+    description:
+      name: flutter_plugin_android_lifecycle
+      sha256: c224ac897bed083dabf11f238dd11a239809b446740be0c2044608c50029ffdf
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.9"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -693,6 +741,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  pointycastle:
+    dependency: transitive
+    description:
+      name: pointycastle
+      sha256: "7c1e5f0d23c9016c5bbd8b1473d0d3fb3fc851b876046039509e18e0c7485f2c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.7.3"
   pool:
     dependency: transitive
     description:

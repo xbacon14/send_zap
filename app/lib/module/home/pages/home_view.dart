@@ -30,7 +30,7 @@ class _HomeViewState extends State<HomeView> {
     if (textTEC.text.isEmpty) {
       textTEC.text = "Texto de visualizacao";
     }
-    // contatoStore.findByClassificacao(classificacao: "TODOS");
+    contatoStore.findByClassificacao(classificacao: "");
     super.initState();
   }
 
@@ -182,6 +182,18 @@ class _HomeViewState extends State<HomeView> {
                         // COLUMN LABEL
                         Row(
                           children: [
+                            Observer(
+                              builder: (_) {
+                                return Checkbox(
+                                    checked: whatsappStore.selectAll,
+                                    onChanged: (v) {
+                                      whatsappStore.selectAll =
+                                          !whatsappStore.selectAll;
+                                      contatoStore.setAllSelect(
+                                          value: whatsappStore.selectAll);
+                                    });
+                              },
+                            ),
                             Expanded(
                               flex: 2,
                               child: Text(
@@ -271,7 +283,7 @@ class _HomeViewState extends State<HomeView> {
                                                 flex: 2,
                                                 child: Text(
                                                   c.endereco!.toUpperCase(),
-                                                  textAlign: TextAlign.center,
+                                                  textAlign: TextAlign.left,
                                                   style: bodyStyle,
                                                 ),
                                               ),

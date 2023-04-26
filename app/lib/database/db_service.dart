@@ -4,7 +4,6 @@ import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
-import 'package:send_zap/module/contato/models/contato.dart';
 
 part 'db_service.g.dart';
 

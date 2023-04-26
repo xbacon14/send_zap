@@ -25,7 +25,9 @@ class _AuthPageState extends State<AuthPage> {
     socketStore.connectAndListen();
     authStore.checkLogin().then((value) {
       if (value) {
-        Modular.to.pushReplacementNamed('/home');
+        Modular.to.popAndPushNamed(
+          '/home',
+        );
       }
     });
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {

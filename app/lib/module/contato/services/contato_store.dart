@@ -2,7 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:mobx/mobx.dart';
 import 'package:send_zap/database/db_service.dart';
 import 'package:send_zap/module/contato/models/contato.dart';
-import 'dart:developer' as dev;
+import 'package:send_zap/module/contato/services/contato_service.dart';
 
 part 'contato_store.g.dart';
 
@@ -17,6 +17,15 @@ abstract class ContatoStoreBase with Store {
 
   @observable
   ObservableList<Contato> dataProvider = ObservableList.of([]);
+
+  Future<void> importacaoXLSX() async {
+    List<Contato> lista = await ContatoService.convertFileResultToContato();
+    saveListaContato(contatos: lista)
+        .then((value) => findContatosByCondition(condition: ""));
+    // for (var l in lista) {
+    //   saveContato(contato: l);
+    // }
+  }
 
   Future<void> findByClassificacao({required String classificacao}) async {
     Future<List<BsContatoData>> result;
@@ -51,6 +60,19 @@ abstract class ContatoStoreBase with Store {
         .then((value) => findContatosByCondition(condition: ""));
   }
 
+  Future<void> saveListaContato({required List<Contato> contatos}) async {
+    for (var c in contatos) {
+      await dbService
+          .into(dbService.bsContato)
+          .insert(BsContatoCompanion.insert(
+            nome: Value(c.nome),
+            telefone: Value(c.telefone),
+            endereco: Value(c.endereco),
+            classificacao: Value(c.classificacao),
+          ));
+    }
+  }
+
   Future<void> findContatosByCondition({required String condition}) async {
     final result = dbService.select(dbService.bsContato)
       ..where((tbl) {
@@ -69,5 +91,11 @@ abstract class ContatoStoreBase with Store {
           ..where((t) => t.id.isSmallerThanValue(10000)))
         .go()
         .then((value) => findContatosByCondition(condition: ""));
+  }
+
+  void setAllSelect({required bool value}) {
+    for (var c in dataProvider) {
+      c.selected = value;
+    }
   }
 }

@@ -2,7 +2,6 @@
 
 import 'package:drift/drift.dart';
 import 'package:mobx/mobx.dart';
-import 'package:send_zap/database/db_service.dart';
 part 'contato.g.dart';
 
 class Contato = ContatoBase with _$Contato;
@@ -52,11 +51,10 @@ abstract class ContatoBase with Store {
 
   ContatoBase.fromMap(Map<String, dynamic> map) {
     id = map['id'];
-    nome = map['nome'] != null ? map['nome'] as String : null;
-    classificacao =
-        map['classificacao'] != null ? map['classificacao'] as String : null;
-    telefone = map['telefone'] != null ? map['telefone'] as String : null;
-    endereco = map['endereco'] != null ? map['endereco'] as String : null;
+    nome = map['nome'];
+    classificacao = map['classificacao'];
+    telefone = map['telefone'];
+    endereco = map['endereco'];
   }
 
   isValid() {

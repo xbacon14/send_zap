@@ -66,6 +66,21 @@ class _ContatoPageState extends State<ContatoPage> {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Text(
+                  "Importar contatos",
+                  style: FluentTheme.of(context).typography.bodyLarge!.copyWith(
+                        fontSize: 16,
+                      ),
+                ),
+              ),
+              onPressed: () {
+                contatoStore.importacaoXLSX();
+                // contatoStore.deleteAll();
+              },
+            ),
+            Button(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Text(
                   "Delete all",
                   style: FluentTheme.of(context).typography.bodyLarge!.copyWith(
                         fontSize: 16,
@@ -191,8 +206,8 @@ class _ContatoPageState extends State<ContatoPage> {
                                   Expanded(
                                     flex: 2,
                                     child: Text(
-                                      c.endereco!.toUpperCase(),
-                                      textAlign: TextAlign.center,
+                                      c.endereco?.toUpperCase() ?? "S/D",
+                                      textAlign: TextAlign.left,
                                       style: bodyStyle,
                                     ),
                                   ),
