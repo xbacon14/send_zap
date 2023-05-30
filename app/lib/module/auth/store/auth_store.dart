@@ -69,6 +69,8 @@ abstract class AuthStoreBase with Store {
     final storage = FlutterSecureStorage();
     storage.write(key: 'sessionKey', value: auth.sessionKey);
     storage.write(key: 'sessionName', value: auth.session);
-    storage.write(key: 'apiToken', value: "flextech");
+    storage.write(
+        key: 'apiToken',
+        value: "9QyQJ-y3hUDZ5hP6!4VX?U9qfHMGr%a^mGC-WDQS2-xr\$xQ7");
   }
 }

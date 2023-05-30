@@ -51,7 +51,7 @@ RUN apt-get install curl -y \
     && npm i -g lighthouse -y
 
 EXPOSE 3332
-CMD npm install --verbose --foreground-scripts --ignore-scripts=false --platform=linux --arch=x64 sharp ; node index.js
+CMD npm install --verbose --foreground-scripts --ignore-scripts=false --platform=linuxmusl --arch=x64 sharp ; node index.js
 
 FROM zap_server_2dev AS zap_server_2prod
 WORKDIR /usr/src/app/
