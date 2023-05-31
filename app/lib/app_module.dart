@@ -14,7 +14,7 @@ class AppModule extends Module {
         Bind.lazySingleton((i) => WhatsappStore(whatsappRepository: i.get())),
         Bind.lazySingleton((i) => AuthRepository()),
         Bind.lazySingleton((i) => AuthStore(authRepository: i.get())),
-        Bind.lazySingleton((i) => ContatoStore(i.get())),
+        Bind.lazySingleton((i) => ContatoStore()),
       ];
 
   @override

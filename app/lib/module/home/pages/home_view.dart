@@ -30,7 +30,7 @@ class _HomeViewState extends State<HomeView> {
     if (textTEC.text.isEmpty) {
       textTEC.text = "Texto de visualizacao";
     }
-    contatoStore.findByClassificacao(classificacao: "");
+    // contatoStore.findByClassificacao(classificacao: "");
     super.initState();
   }
 
@@ -53,8 +53,8 @@ class _HomeViewState extends State<HomeView> {
             onChanged: (bool value) {
               setState(() {
                 categoriaSelected = i;
-                contatoStore.findByClassificacao(
-                    classificacao: categoriaContatos[categoriaSelected]);
+                // contatoStore.findByClassificacao(
+                //     classificacao: categoriaContatos[categoriaSelected]);
               });
             },
             child: Padding(

@@ -19,7 +19,7 @@ class _ContatoPageState extends State<ContatoPage> {
 
   @override
   void initState() {
-    contatoStore.findContatosByCondition(condition: "");
+    // contatoStore.findContatosByCondition(condition: "");
     // contatoStore.findAll();
     super.initState();
   }
@@ -49,7 +49,7 @@ class _ContatoPageState extends State<ContatoPage> {
                 placeholder: "Consulte por nombre o numero de telefono",
                 decoration: BoxDecoration(),
                 onSubmitted: (value) {
-                  contatoStore.findContatosByCondition(condition: value);
+                  // contatoStore.findContatosByCondition(condition: value);
                 },
                 suffix: Padding(
                   padding: const EdgeInsets.all(4.0),
@@ -73,7 +73,7 @@ class _ContatoPageState extends State<ContatoPage> {
                 ),
               ),
               onPressed: () {
-                contatoStore.importacaoXLSX();
+                // contatoStore.importacaoXLSX();
                 // contatoStore.deleteAll();
               },
             ),
@@ -88,7 +88,7 @@ class _ContatoPageState extends State<ContatoPage> {
                 ),
               ),
               onPressed: () {
-                contatoStore.deleteAll();
+                // contatoStore.deleteAll();
               },
             ),
             Button(

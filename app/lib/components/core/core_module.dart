@@ -1,7 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:send_zap/components/core/dio/api_rest_client.dart';
 import 'package:send_zap/components/core/socket/socket_store.dart';
-import 'package:send_zap/database/db_service.dart';
 
 class CoreModule extends Module {
   @override
@@ -22,9 +21,9 @@ class CoreModule extends Module {
     //   (i) => DataShared(),
     //   export: true,
     // )
-    Bind.singleton(
-      (i) => DbService(),
-      export: true,
-    )
+    // Bind.singleton(
+    //   (i) => DbService(),
+    //   export: true,
+    // )
   ];
 }

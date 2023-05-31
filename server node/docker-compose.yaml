@@ -1,0 +1,20 @@
+version: "3.5"
+services:
+  zap_server:
+    build:
+      context: .
+      target: zap_server
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+    image: xbacons/zap-server
+    container_name: zap_server
+    tty: true
+    ports:
+      - 3333:3333
+    networks:
+      backend:
+        aliases:
+          - zap_server
+networks:
+  backend:

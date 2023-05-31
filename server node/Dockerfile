@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 AS zap_server_2dev
+FROM ubuntu:18.04 AS zap_server_dev
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app/
 RUN apt-get update && apt-get install -y \
@@ -53,7 +53,7 @@ RUN apt-get install curl -y \
 EXPOSE 3332
 CMD npm install --verbose --foreground-scripts --ignore-scripts=false --platform=linuxmusl --arch=x64 sharp ; node index.js
 
-FROM zap_server_2dev AS zap_server_2prod
+FROM zap_server_dev AS zap_server_prod
 WORKDIR /usr/src/app/
 COPY package.json ./
 RUN npm install
