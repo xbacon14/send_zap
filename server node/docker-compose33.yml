@@ -1,16 +1,35 @@
 version: "3.5"
 services:
-  zap_server:
+  zap_server_2dev:
+    build:
+      context: .
+      target: zap_server_2dev
+    container_name: zap_server_2dev
     working_dir: /usr/src/app
     volumes:
       - ./:/usr/src/app
-    image: xbacons/zap-server
-    container_name: zap_server
+    ports:
+      - 3333:3333
+    stdin_open: true # docker run -i
+    tty: true # docker run -t
+    networks:
+      backend:
+        aliases:
+          - zap_server_2dev
+
+  zap_server_2prod:
+    build:
+      context: .
+      target: zap_server_2prod
+    container_name: zap_server_2prod
     ports:
       - 3333:3333
     networks:
       backend:
         aliases:
-          - zap_server
+          - zap_server_2prod
+volumes:
+  zap_server_2dev: null
 networks:
   backend:
+    name: zap_server_2network

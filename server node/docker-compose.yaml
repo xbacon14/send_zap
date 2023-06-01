@@ -4,9 +4,9 @@ services:
     build:
       context: .
       target: zap_server
-    working_dir: /usr/src/app
+    working_dir: /home/send_zap/server node
     volumes:
-      - ./:/usr/src/app
+      - ./:/home/send_zap/server node
     image: xbacons/zap-server
     container_name: zap_server
     tty: true

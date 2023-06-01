@@ -29,31 +29,17 @@ const checkParams = async (req, res, next) => {
         })
     }
     else {
-        if (engine === '1') {
-            //const client = await data.client.isOnline();
-            if (!data.client) {
-                return res.status(400).json({
-                    response: false,
-                    status: "Disconnected",
-                    message: 'A sessão do WhatsApp informada não está ativa.'
-                })
-            }
-            else {
-                next();
-            }
+
+        const client = await data?.client?.isConnected();
+        if (!client) {
+            return res.status(400).json({
+                response: false,
+                status: "Disconnected",
+                message: 'A sessão do WhatsApp informada não está ativa.'
+            })
         }
         else {
-            const client = await data?.client?.isConnected();
-            if (!client) {
-                return res.status(400).json({
-                    response: false,
-                    status: "Disconnected",
-                    message: 'A sessão do WhatsApp informada não está ativa.'
-                })
-            }
-            else {
-                next();
-            }
+            next();
         }
     }
 }
