@@ -1,9 +1,4 @@
-/*
- * @Author: Eduardo Policarpo
- * @contact: +55 43996611437
- * @Date: 2021-05-10 18:09:49
- * @LastEditTime: 2021-06-07 03:18:01
- */
+
 import wppconnect from '@wppconnect-team/wppconnect';
 import Sessions from '../controllers/sessions.js';
 import events from '../controllers/events.js';
