@@ -7,7 +7,7 @@ services:
     working_dir: /home/send_zap/server node
     volumes:
       - ./:/home/send_zap/server node
-    image: xbacons/zap-server
+    image: xbacons/zap_server
     container_name: zap_server
     tty: true
     ports:
