@@ -22,7 +22,7 @@ class _WhatsappCloneUiState extends State<WhatsappCloneUi> {
         color: Colors.white,
         child: Builder(
           builder: (context) => FluentApp(
-            useInheritedMediaQuery: true,
+            // useInheritedMediaQuery: true,
             debugShowCheckedModeBanner: false,
             color: Colors.white,
             home: ScaffoldPage(

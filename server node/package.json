@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/edupoli/MyZap2.0#readme",
   "dependencies": {
-    "@wppconnect-team/wppconnect": "1.27.3",
+    "@wppconnect-team/wppconnect": "1.28.0",
     "assert": "^*",
     "async-get-file": "^*",
     "axios": "^0.21.2",

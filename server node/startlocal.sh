@@ -1,2 +1,2 @@
 #!/bin/bash
-docker-compose up --build zap-server-prod
+docker-compose up --build zap_server

@@ -50,6 +50,34 @@ export default class Wppconnect {
                 updatesLog: false,
                 autoClose: 90000,
                 browserArgs: [
+                    // '--log-level=3',
+                    // '--no-default-browser-check',
+                    // '--disable-site-isolation-trials',
+                    // '--no-experiments',
+                    // '--ignore-gpu-blacklist',
+                    // '--ignore-certificate-errors',
+                    // '--ignore-certificate-errors-spki-list',
+                    // '--disable-gpu',
+                    // '--disable-extensions',
+                    // '--disable-default-apps',
+                    // '--enable-features=NetworkService',
+                    // '--disable-setuid-sandbox',
+                    // '--no-sandbox',
+                    // // Extras
+                    // '--disable-webgl',
+                    // '--disable-threaded-animation',
+                    // '--disable-threaded-scrolling',
+                    // '--disable-in-process-stack-traces',
+                    // '--disable-histogram-customizer',
+                    // '--disable-gl-extensions',
+                    // '--disable-composited-antialiasing',
+                    // '--disable-canvas-aa',
+                    // '--disable-3d-apis',
+                    // '--disable-accelerated-2d-canvas',
+                    // '--disable-accelerated-jpeg-decoding',
+                    // '--disable-accelerated-mjpeg-decode',
+                    // '--disable-app-list-dismiss-on-blur',
+                    // '--disable-accelerated-video-decode',
                     '--log-level=3',
                     '--no-default-browser-check',
                     '--disable-site-isolation-trials',
@@ -64,7 +92,12 @@ export default class Wppconnect {
                     '--disable-setuid-sandbox',
                     '--no-sandbox',
                     // Extras
+                    '--cpu-throttling-rate=5',
+                    '--disable-dev-shm-usage',
+                    '--no-first-run',
                     '--disable-webgl',
+                    '--no-zygote',
+                    '--single-process',
                     '--disable-threaded-animation',
                     '--disable-threaded-scrolling',
                     '--disable-in-process-stack-traces',
@@ -78,6 +111,80 @@ export default class Wppconnect {
                     '--disable-accelerated-mjpeg-decode',
                     '--disable-app-list-dismiss-on-blur',
                     '--disable-accelerated-video-decode',
+                    '--disable-background-networking',
+                    '--disable-background-timer-throttling',
+                    '--disable-backgrounding-occluded-windows',
+                    '--disable-breakpad',
+                    '--disable-client-side-phishing-detection',
+                    '--disable-component-update',
+                    '--disable-datasaver-prompt',
+                    '--disable-desktop-notifications',
+                    '--disable-domain-reliability',
+                    '--disable-features=TranslateUI',
+                    '--disable-geolocation',
+                    '--disable-infobars',
+                    '--disable-notifications',
+                    '--disable-popup-blocking',
+                    '--disable-print-preview',
+                    '--disable-prompt-on-repost',
+                    '--disable-renderer-backgrounding',
+                    '--disable-search-geolocation-disclosure',
+                    '--disable-session-crashed-bubble',
+                    '--disable-speech-api',
+                    '--disable-sync',
+                    '--disable-tab-for-desktop-share',
+                    '--disable-translate',
+                    '--disable-web-security', // desativa a política de mesma origem do navegador
+                    '--disable-background-fetch', // desativa o recurso de busca em segundo plano
+                    '--disable-background-video-track', // desativa a reprodução de vídeo em segundo plano
+                    '--disable-notifications-api', // desativa a API de notificações do navegador
+                    '--disable-offer-store-unmasked-wallet-cards', // desativa a oferta de armazenamento de cartões de carteira sem máscara
+                    '--disable-remote-playback-api', // desativa a API de reprodução remota
+                    '--disable-rtc-smoothness-algorithm', // desativa o algoritmo de suavização RTC
+                    '--disable-smooth-scrolling', // desativa a rolagem suave do navegador
+                    '--disable-software-rasterizer', // desativa o renderizador de software
+                    '--disable-webauthn', // desativa a autenticação da Web
+                    '--force-color-profile=srgb', // força o perfil de cores sRGB
+                    '--force-fieldtrials=*BackgroundStartupTesting/Group1/', // força o uso de experimentos de inicialização em segundo plano
+                    '--renderer-process-limit=1', // limita o número de processos de renderização a 1
+                    '--safebrowsing-disable-auto-update', // desativa a atualização automática do serviço de navegação segura do Google
+                    '--top-chrome-md=',
+                    '--use-gl=swiftshader', // usa o renderizador SwiftShader para emular o OpenGL
+                    '--disable-webgl-image-chromium', // desativa a imagem WebGL
+                    '--enable-low-res-tiling', // ativa o desempenho em telhas de baixa resolução
+                    '--enable-zero-copy', // ativa a cópia de zero
+                    '--disable-es3-gl-context', // desativa o contexto WebGL ES3
+                    '--disable-es3-apis', // desativa a API WebGL ES3
+                    '--enable-features=PageLifecycleInterest', // ativa o interesse do ciclo de vida da página
+                    '--enable-features=TabHoverCards', // ativa cartões suspensos da guia
+                    '--enable-features=TextFragmentAnchor', // ativa âncoras de fragmentos de texto
+                    '--enable-features=HeavyAdPrivacyMitigations', // ativa as mitigação de privacidade para anúncios pesados
+                    '--enable-features=ScrollAnchorSerialization', // ativa a serialização de âncora de rolagem
+                    '--enable-features=PasswordImport', // ativa a importação de senha
+                    '--enable-features=PreciseMemoryInfo', // ativa informações de memória precisa
+                    '--enable-features=V8VmFuture', // ativa o futuro da VM do V8
+                    '--enable-features=WebUplink', // ativa o uplink da web
+                    '--enable-features=WinrtGeolocationImplementation', // ativa a implementação de geolocalização do WinRT
+                    '--enable-features=WinrtSensorImplementation', // ativa a implementação do sensor do WinRT
+                    '--enable-features=WinrtSensorPlatform', // ativa a plataforma de sensores do WinRT
+                    '--disable-logging', // desativa o registro
+                    '--disable-background-worker-throttling', // desativa a limitação do trabalhador de fundo
+                    '--enable-blink-features=IdleDetection', // ativa a detecção de inatividade
+                    '--enable-blink-features=LayoutNG', // ativa o novo motor de layout NG
+                    '--enable-blink-features=PreciseMemoryInfo', // ativa informações de memória precisa no Blink
+                    '--enable-blink-features=ScrollAnchorSerialization', // ativa a serialização de âncora de rolagem no Blink
+                    '--enable-blink-features=V8VmFuture', // ativa o futuro da VM do V8 no Blink
+                    '--disable-pnacl-crash-throttling', // desativa a limitação de falhas PNaCl
+                    '--disable-voice-input', // desativa a entrada de voz
+                    '--enable-fast-unload', // ativa a descarga rápida
+                    '--enable-parallel-downloading', // ativa o download paralelo
+                    '--enable-simple-cache-backend', // ativa o backend de cache simples
+                    '--enable-tcp-fast-open', // ativa o TCP Fast Open
+                    '--enable-threaded-compositing', // ativa a composição roscada
+                    '--force-color-profile=srgb', // força o perfil de cores sRGB
+                    '--safebrowsing-disable-auto-update', // desativa a atualização automática do serviço de navegação segura do Google
+                    '--top-chrome-md=',
+                    '--use-gl=swiftshader' // usa o renderizador SwiftShader para emular o OpenGL
                 ],
                 puppeteerOptions: { userDataDir: './tokens/' + session, },
                 createPathFileToken: false,
