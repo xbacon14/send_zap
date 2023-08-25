@@ -1,0 +1,8 @@
+# Usar la imagen base de httpd
+FROM httpd:latest
+
+# Copiar todos los archivos de tu proyecto, excepto los especificados
+COPY . /usr/local/apache2/htdocs/
+
+# Copiar tu archivo httpd.conf personalizado al directorio de configuración del servidor
+COPY httpd.conf /usr/local/apache2/conf/

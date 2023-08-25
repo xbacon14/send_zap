@@ -1,3 +1,0 @@
-docker build -t xbacons/zap-forms .
-
-docker run -d -p 3334:80 --restart always --name zap_forms xbacons/zap-forms

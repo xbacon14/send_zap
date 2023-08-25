@@ -8,7 +8,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import py.com.flextech.models.dto.GenerateTokenResponse;
 
-@RegisterRestClient(baseUri = "http://localhost:21465/api")
+@RegisterRestClient(baseUri = "http://167.71.18.140:3334/api")
+// @RegisterRestClient(baseUri = "http://192.168.0.166:3334/api")
 public interface AuthService {
 
   @POST

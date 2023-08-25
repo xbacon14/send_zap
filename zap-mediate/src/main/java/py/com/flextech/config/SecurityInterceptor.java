@@ -16,16 +16,14 @@ import jakarta.ws.rs.ext.Provider;
 @Priority(1)
 public class SecurityInterceptor implements ContainerRequestFilter {
 
-  @ConfigProperty(name = "wpp.secret")
+  @ConfigProperty(name = "zap.mediate.token")
   @Inject
   private String secret;
 
   @Override
   public void filter(ContainerRequestContext requestContext) throws IOException {
     List<String> allowedUri = new ArrayList<String>();
-    allowedUri.add("/api/generate-token");
-    allowedUri.add("/api/show");
-    allowedUri.add("/api/qrcode");
+    // allowedUri.add("/api/show");
     // allowedUri.add("/api/start/*");
     if (!allowedUri.contains(requestContext.getUriInfo().getPath())) {
       String authorizationHeader = requestContext.getHeaderString("Authorization");

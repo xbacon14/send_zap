@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import py.com.flextech.models.dto.text.Response;
 
 @Getter
 @Setter
