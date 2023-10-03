@@ -21,7 +21,7 @@ class SocketStore {
     try {
       // ignore: avoid_debugPrint
       debugPrint('**** INIT SOCKET ****');
-      socket = io.io(Enviroments.param('base_url'),
+      socket = io.io(Enviroments.param('socket_url'),
           io.OptionBuilder().setTransports(['websocket']).build());
     } catch (e) {
       connectAndListen();
@@ -62,6 +62,8 @@ class SocketStore {
 
   Future<void> logout() async {
     final storage = FlutterSecureStorage();
-    await storage.deleteAll();
+    await storage.delete(key: 'sessionKey');
+    await storage.delete(key: 'apiToken');
+    await storage.delete(key: 'sessionName');
   }
 }

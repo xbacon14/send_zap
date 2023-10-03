@@ -225,9 +225,9 @@ class _FormContatoState extends State<FormContato> {
                       ..endereco = enderecoTEC.text
                       ..classificacao = selected;
                     if (contato.isValid()) {
-                      // contatoStore
-                      //     .saveContato(contato: contato)
-                      //     .then((value) => Navigator.pop(context));
+                      contatoStore
+                          .saveContato(contato: contato)
+                          .then((value) => Navigator.pop(context));
                     } else {
                       debugPrint("not valid");
                     }

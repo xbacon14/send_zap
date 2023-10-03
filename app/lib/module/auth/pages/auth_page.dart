@@ -28,6 +28,7 @@ class _AuthPageState extends State<AuthPage> {
         Modular.to.popAndPushNamed(
           '/home',
         );
+        socketStore.dispose();
       }
     });
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {

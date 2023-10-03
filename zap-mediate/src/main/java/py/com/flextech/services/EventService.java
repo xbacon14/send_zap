@@ -24,6 +24,7 @@ import py.com.flextech.models.dto.LogoutResponseDto;
 import py.com.flextech.models.dto.MessageDto;
 import py.com.flextech.models.dto.file.SendFileResponse;
 import py.com.flextech.models.dto.text.WhatsAppSendFileDto;
+import py.com.flextech.utils.StringUtils;
 
 @ApplicationScoped
 public class EventService {
@@ -40,9 +41,10 @@ public class EventService {
       throws Exception {
     HttpClient httpClient = HttpClient.newHttpClient();
     ObjectMapper om = new ObjectMapper();
+    sessionKey = StringUtils.normalizaText(sessionKey);
 
     URI uri = URI.create(baseUrl + "/api/" + sessionKey + "/start-session");
-
+    System.out.println("Session: " + sessionKey + " Token: " + token);
     HttpRequest request = HttpRequest.newBuilder(uri).header("Authorization",
         "Bearer "
             + token)
@@ -56,7 +58,7 @@ public class EventService {
       return startSessionResponse;
     } else {
       // dao.deleteBySessionID(sessionKey);
-      throw new RuntimeException("Error al iniciar sesion");
+      throw new RuntimeException("Error al iniciar sesion " + response.body());
     }
   }
 
@@ -65,6 +67,7 @@ public class EventService {
       throws IOException, InterruptedException {
     HttpClient httpClient = HttpClient.newHttpClient();
     ObjectMapper om = new ObjectMapper();
+    sessionKey = StringUtils.normalizaText(sessionKey);
     URI uri = URI.create(baseUrl + "/api/" + sessionKey + "/send-message");
     String json = om.writeValueAsString(message);
 
@@ -75,11 +78,10 @@ public class EventService {
     HttpResponse<String> response = httpClient.send(request,
         HttpResponse.BodyHandlers.ofString());
     if (response.statusCode() == 201) {
-      ChatResponseDto chatResponseDto = om.readValue(response.body(),
-          ChatResponseDto.class);
+      ChatResponseDto chatResponseDto = new ChatResponseDto(200l, message.getMessage());
       return chatResponseDto;
     } else {
-      throw new RuntimeException("Error al enviar mensjae");
+      throw new RuntimeException("Error al enviar mensaje" + response.body());
     }
   }
 
@@ -88,6 +90,7 @@ public class EventService {
       throws IOException, InterruptedException {
     HttpClient httpClient = HttpClient.newHttpClient();
     ObjectMapper om = new ObjectMapper();
+    sessionKey = StringUtils.normalizaText(sessionKey);
     URI uri = URI.create(baseUrl + "/api/" + sessionKey + "/send-file-base64");
     String json = om.writeValueAsString(dto);
 
@@ -102,7 +105,7 @@ public class EventService {
           SendFileResponse.class);
       return fileSendResponse;
     } else {
-      throw new RuntimeException("Error al enviar archivo");
+      throw new RuntimeException("Error al enviar archivo" + response.body());
     }
   }
 
@@ -111,6 +114,7 @@ public class EventService {
       throws IOException, InterruptedException {
     HttpClient httpClient = HttpClient.newHttpClient();
     ObjectMapper om = new ObjectMapper();
+    sessionKey = StringUtils.normalizaText(sessionKey);
     URI uri = URI.create(baseUrl + "/api/" + sessionKey + "/logout-session");
 
     HttpRequest request = HttpRequest.newBuilder(uri).header("Authorization", "Bearer " + token)

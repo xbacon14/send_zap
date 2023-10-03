@@ -33,14 +33,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
         integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.2/socket.io.js"
-        integrity="sha512-jMNwWSmjje4fjYut9MBGKXw5FZA6D67NHAuC9szpjbbjg51KefquNfvn4DalCbGfkcv/jHsHnPo1o47+8u4biA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+        integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+        crossorigin="anonymous"></script>
     <script>
-        var host = "http://167.71.18.140:3334";
-        var baseUrl = "http://167.71.18.140:3333/api";
-        // var baseUrl = "http://localhost:8080/api";
-        // var host = "http://192.168.0.166:3334";
+        // var host = "http://167.71.18.140:3334";
+        // var baseUrl = "http://167.71.18.140:3333";
+        var baseUrl = "http://localhost:8080";
+        // var host = "ws://192.168.0.166:8080";
         var token = "9QyQJ-y3hUDZ5hP6!4VX?U9qfHMGr%a^mGC-WDQS2-xr$xQ7";
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
@@ -64,36 +64,45 @@
                 }
                 axios.post(baseUrl + "/start", { "session": session }, { headers }).then(response => {
                     // alert('Respuesta: ', response.data);
+                    document.getElementById('image').src = response.data.qrcode.base64;
+                    document.getElementById('status').innerText = "Cargando chats...";
                 }).catch(error => {
+                    console.log(error);
                     document.getElementById('image').src = './error.png';
                     document.getElementById('status').innerText = "No se ha podido establecer una conexión con el servidor";
                     // alert('Error: ', error);
                 });
             }
         }
-        const socket = io(host);
-        console.log('socket listening');
+        // var parametros = "userId=ITALUS";
+        // const socket = io(host, { query: parametros });
+        // console.log('socket listening');
 
-        socket.on('qrCode', (qrCode) => {
-            if (session === qrCode.session) {
-                document.getElementById('image').src = qrCode.data;
-            }
-        })
+        // socket.on('qrCode', (qrCode) => {
+        //     console.log(qrCode);
+        //     // if (session === qrCode.session) {
+        //     //     document.getElementById('image').src = qrCode.data;
+        //     // }
+        // })
 
-        socket.on('qrcode-sucess', (qrCode) => {
-            document.getElementById('image').src = './sucess.png';
-        })
+        // socket.on('atualiza', (qrCode) => {
+        //     console.log('atualiza');
+        // })
 
-        socket.on('whatsapp-status', (status) => {
-            if (status) {
-                alert('Whatsapp Aberto com sucesso')
-                document.getElementById('status').innerText = "Conexión realizada con éxito";
-            }
-            else {
-                document.getElementById('status').innerText = "No se ha podido establecer una conexión con el servidor";
-                document.getElementById('image').src = './error.png';
-            }
-        })
+        // socket.on('qrcode-sucess', (qrCode) => {
+        //     document.getElementById('image').src = './sucess.png';
+        // })
+
+        // socket.on('whatsapp-status', (status) => {
+        //     if (status) {
+        //         alert('Whatsapp Aberto com sucesso')
+        //         document.getElementById('status').innerText = "Conexión realizada con éxito";
+        //     }
+        //     else {
+        //         document.getElementById('status').innerText = "No se ha podido establecer una conexión con el servidor";
+        //         document.getElementById('image').src = './error.png';
+        //     }
+        // })
     </script>
 </body>
 

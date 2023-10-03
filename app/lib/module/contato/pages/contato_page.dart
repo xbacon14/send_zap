@@ -19,7 +19,7 @@ class _ContatoPageState extends State<ContatoPage> {
 
   @override
   void initState() {
-    // contatoStore.findContatosByCondition(condition: "");
+    contatoStore.findContatosByCondition(condition: "");
     // contatoStore.findAll();
     super.initState();
   }
@@ -73,8 +73,8 @@ class _ContatoPageState extends State<ContatoPage> {
                 ),
               ),
               onPressed: () {
-                // contatoStore.importacaoXLSX();
-                // contatoStore.deleteAll();
+                contatoStore.importacaoXLSX();
+                contatoStore.deleteAll();
               },
             ),
             Button(
@@ -88,7 +88,7 @@ class _ContatoPageState extends State<ContatoPage> {
                 ),
               ),
               onPressed: () {
-                // contatoStore.deleteAll();
+                contatoStore.deleteAll();
               },
             ),
             Button(

@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mobx/mobx.dart';
 import 'package:send_zap/module/contato/models/contato.dart';
@@ -20,6 +23,8 @@ abstract class WhatsappStoreBase with Store {
     if (contatos.isNotEmpty) {
       String? sessionName = await storage.read(key: 'sessionName');
       String? sessionKey = await storage.read(key: 'sessionkey');
+      final Random random = Random();
+      int duration = 5;
       for (var i = 0; i < contatos.length; i++) {
         whatsappRepository.sendText(
           textDto: SendText()
@@ -28,6 +33,10 @@ abstract class WhatsappStoreBase with Store {
             ..number = contatos[i].telefone
             ..text = text,
         );
+        debugPrint(
+            "${i + 1}/${contatos.length} - ${contatos[i].nome}, duración: $duration");
+        await Future.delayed(Duration(seconds: duration));
+        duration = random.nextInt(11) + 5;
       }
     }
   }

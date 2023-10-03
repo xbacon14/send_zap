@@ -1,4 +1,4 @@
-package py.com.flextech.models.dto;
+package py.com.flextech.models.uazapi.session;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChatResponseDto {
-  private Long result;
-  private String messages;
-
+public class UazapiInstanceObject {
+  private String instanceName;
+  private String status;
 }

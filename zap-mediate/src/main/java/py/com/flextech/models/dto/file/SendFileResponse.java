@@ -12,5 +12,10 @@ public class SendFileResponse {
   private List<FileResponse> response;
   private String mapper;
   private String session;
+  public SendFileResponse(String status) {
+    this.status = status;
+  }
+
+  
 
 }

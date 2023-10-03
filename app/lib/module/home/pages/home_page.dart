@@ -50,8 +50,8 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(FluentIcons.sign_out),
             title: Text("Cerrar sesión"),
             body: Button(
-                onPressed: () {
-                  socketStore.logout();
+                onPressed: () async {
+                  await socketStore.logout();
                   Modular.to.pushReplacementNamed("/");
                 },
                 child: Text("logout")),

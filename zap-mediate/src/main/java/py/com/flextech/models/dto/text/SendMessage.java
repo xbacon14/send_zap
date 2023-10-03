@@ -6,7 +6,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SendMessage {
+  private String url;
   private String session;
-  private String phone;
-  private String message;
+  private String text;
+  private String number;
+  // private String phone;
+  // private String message;
 }

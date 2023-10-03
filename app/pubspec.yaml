@@ -26,6 +26,8 @@ dependencies:
   socket_io_client: ^2.0.1
   file_picker: ^5.2.1
   excel_to_json: ^1.1.0
+  drift: ^2.12.0
+  sqlite3_flutter_libs: ^0.5.17
 
 
 dev_dependencies:
@@ -33,7 +35,7 @@ dev_dependencies:
     sdk: flutter
   build_runner: ^2.3.3
   mobx_codegen: ^2.1.1
-  drift_dev: ^2.5.2
+  drift_dev: ^2.12.0
   
 flutter:
 

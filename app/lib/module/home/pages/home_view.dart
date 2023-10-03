@@ -107,6 +107,9 @@ class _HomeViewState extends State<HomeView> {
                                 child: TextBox(
                                   controller: textTEC,
                                   focusNode: textFN,
+                                  onSubmitted: (value) {
+                                    textTEC.text += '\n';
+                                  },
                                   onChanged: (value) {
                                     setState(() {});
                                   },

@@ -105,6 +105,7 @@
             linkGenerado = host + "?";
             session = document.getElementById("session").value;
             linkGenerado = linkGenerado + "session=" + session;
+            linkGenerado = linkGenerado.replace(/ /g, '%20');
             console.log(linkGenerado);
             document.getElementById("linkGenerado").innerText = linkGenerado;
         }

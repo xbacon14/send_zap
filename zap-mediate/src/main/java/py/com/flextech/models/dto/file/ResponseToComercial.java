@@ -1,4 +1,4 @@
-package py.com.flextech.models.dto;
+package py.com.flextech.models.dto.file;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,10 +7,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class ChatResponseDto {
+@AllArgsConstructor
+public class ResponseToComercial {
   private Long result;
   private String messages;
+  public ResponseToComercial(Long result) {
+    this.result = result;
+  }
 
+  
 }
