@@ -2,25 +2,5 @@
 
 docker build -f .\src\main\docker\Dockerfile.jvm -t xbacons/zap-mediate .
 
-docker run -d --name zap-mediate -v zap-mediate:/home/zap-mediate/server -p 3333:8080 --restart always xbacons/zap-mediate:latest
+docker run -d --name zap-mediate -p 3333:8080 --restart always xbacons/zap-mediate:latest
 
-
-##DOCKER COMPOSE
-
-version: '3'
-services:
-  zap-mediate:
-    image: xbacons/zap-mediate:latest
-    container_name: zap-mediate
-    volumes:
-      - zap-mediate:/home/zap-mediate/server
-    ports:
-      - "3333:8080"
-    restart: always
-
-  zap-auth:
-    image: xbacons/zap-auth:latest
-    container_name: zap-auth
-    ports:
-      - "80:80"
-    restart: always

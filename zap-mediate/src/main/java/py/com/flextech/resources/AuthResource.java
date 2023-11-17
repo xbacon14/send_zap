@@ -2,17 +2,9 @@ package py.com.flextech.resources;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
-import org.eclipse.microprofile.rest.client.inject.RestClient;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.annotation.security.PermitAll;
 import jakarta.inject.Inject;
@@ -27,7 +19,6 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import py.com.flextech.models.StartSession;
 import py.com.flextech.models.dto.ChatResponseDto;
-import py.com.flextech.models.dto.GenerateTokenResponse;
 import py.com.flextech.models.dto.LogoutResponseDto;
 import py.com.flextech.models.dto.MessageDto;
 import py.com.flextech.models.dto.file.ResponseToComercial;
@@ -38,8 +29,6 @@ import py.com.flextech.models.dto.text.WhatsAppWithSendFile;
 import py.com.flextech.models.uazapi.session.UazapiCreateInstance;
 import py.com.flextech.models.uazapi.session.UazapiCreateInstanceResponse;
 import py.com.flextech.models.uazapi.session.UazapiLogoutResponse;
-import py.com.flextech.services.AuthService;
-import py.com.flextech.services.EventService;
 import py.com.flextech.services.UazapiEventService;
 
 @Path("/")
@@ -48,53 +37,35 @@ import py.com.flextech.services.UazapiEventService;
 public class AuthResource {
 
   @Inject
-  @RestClient
-  AuthService authService;
-
-  @Inject
-  EventService eventService;
-
-  @Inject
   UazapiEventService uazapiEventService;
-
-  @Inject
-  @ConfigProperty(name = "wpp.secret")
-  String wppSecret;
 
   @Inject
   @ConfigProperty(name = "zap.mediate.token")
   String zapMediateToken;
 
-  private Map<String, String> sessionMap = new HashMap<>();
-
-  private List<String> sessionesUazapi = new ArrayList<String>() {
-    {
-      add("FLEX_PDV_VENDAS");
-      add("SISTEMA_FLEXTECH_MENSUALIDAD");
-      add("ITALUS");
-    }
-  };
-
-  @GET
-  @PermitAll
-  @Path("show")
-  public Response showAllSessions() throws JsonMappingException, JsonProcessingException {
-    String response = authService.showAllSessions(wppSecret);
-    ObjectMapper om = new ObjectMapper();
-    JsonNode root = om.readTree(response);
-    JsonNode respNode = root.get("response");
-    List<String> sessionesIniciadas = new ArrayList<String>();
-    if (respNode.isArray()) {
-      for (JsonNode node : respNode) {
-        GenerateTokenResponse gtr = authService.generateToken(node.asText(), wppSecret);
-        sessionMap.put(gtr.getSession(), gtr.getToken());
-        sessionesIniciadas.add(gtr.getSession());
-      }
-    }
-    String stringResponse = "Fueron generados los tokens de: " + String.join(", ", sessionesIniciadas);
-    System.out.println(stringResponse);
-    return Response.ok(stringResponse).build();
-  }
+  // @GET
+  // @PermitAll
+  // @Path("show")
+  // public Response showAllSessions() throws JsonMappingException,
+  // JsonProcessingException {
+  // String response = authService.showAllSessions(wppSecret);
+  // ObjectMapper om = new ObjectMapper();
+  // JsonNode root = om.readTree(response);
+  // JsonNode respNode = root.get("response");
+  // List<String> sessionesIniciadas = new ArrayList<String>();
+  // if (respNode.isArray()) {
+  // for (JsonNode node : respNode) {
+  // GenerateTokenResponse gtr = authService.generateToken(node.asText(),
+  // wppSecret);
+  // sessionMap.put(gtr.getSession(), gtr.getToken());
+  // sessionesIniciadas.add(gtr.getSession());
+  // }
+  // }
+  // String stringResponse = "Fueron generados los tokens de: " + String.join(",
+  // ", sessionesIniciadas);
+  // System.out.println(stringResponse);
+  // return Response.ok(stringResponse).build();
+  // }
 
   // REQUISICIONES CON TOKEN
 
@@ -127,19 +98,12 @@ public class AuthResource {
   @Path("sendText")
   public ChatResponseDto sendMessage(SendMessage message)
       throws IOException, InterruptedException {
-    verifySession(message.getSession());
     MessageDto dto = new MessageDto();
     dto.setMessage(message.getText());
     List<String> phones = new ArrayList<>();
     phones.add(message.getNumber());
     dto.setPhone(phones);
-    if (sessionesUazapi.contains(message.getSession())) {
-      System.out.println("uazapi session: " + message.getSession());
-      return uazapiEventService.sendMessage(message.getSession(), zapMediateToken, dto);
-    } else {
-      return eventService.sendMessage(message.getSession(), sessionMap.get(
-          message.getSession()), dto);
-    }
+    return uazapiEventService.sendMessage(message.getSession(), zapMediateToken, dto);
 
   }
 
@@ -148,7 +112,6 @@ public class AuthResource {
   @Path("sendFile64")
   public ResponseToComercial sendFile64(@HeaderParam("sessionkey") String session, WhatsAppWithSendFile file)
       throws IOException, InterruptedException {
-    verifySession(session);
     WhatsAppSendFileDto dto = new WhatsAppSendFileDto();
     dto.setPhone(file.getNumber());
     dto.setFilename(file.getFileName());
@@ -156,12 +119,7 @@ public class AuthResource {
     dto.setCaption(file.getCaption());
     dto.setMessage(file.getCaption());
     SendFileResponse response;
-    if (sessionesUazapi.contains(session)) {
-      response = uazapiEventService.sendFile64(session, zapMediateToken, dto);
-    } else {
-      response = eventService.sendFile64(session, sessionMap.get(session),
-          dto);
-    }
+    response = uazapiEventService.sendFile64(session, zapMediateToken, dto);
     return new ResponseToComercial(200l, response.getStatus());
 
   }
@@ -170,23 +128,8 @@ public class AuthResource {
   @PermitAll
   @Path("logout-session")
   public LogoutResponseDto logou(@QueryParam("sessionKey") String sessionKey) throws Exception {
-    if (sessionesUazapi.contains(sessionKey)) {
-      UazapiLogoutResponse response = uazapiEventService.logoutSession(sessionKey);
-      return new LogoutResponseDto("200", response.getMessage());
-    } else {
-      verifySession(sessionKey);
-      LogoutResponseDto response = eventService.logoutSession(sessionKey, sessionMap.get(sessionKey));
-      if (response != null) {
-        return response;
-      } else {
-        throw new Exception();
-      }
-    }
+    UazapiLogoutResponse response = uazapiEventService.logoutSession(sessionKey);
+    return new LogoutResponseDto("200", response.getMessage());
   }
 
-  private void verifySession(String sessionKey) throws JsonMappingException, JsonProcessingException {
-    if (sessionMap.isEmpty() || !sessionMap.containsKey(sessionKey)) {
-      showAllSessions();
-    }
-  }
 }

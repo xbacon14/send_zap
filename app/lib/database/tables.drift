@@ -4,4 +4,4 @@ CREATE TABLE BS_CONTATO (
     telefone TEXT,
     endereco TEXT,
     classificacao TEXT
-)
+);

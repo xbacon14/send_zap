@@ -1,6 +1,5 @@
 package py.com.flextech.models.uazapi.qr_code;
 
-import io.quarkus.runtime.annotations.IgnoreProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

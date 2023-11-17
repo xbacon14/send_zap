@@ -2,12 +2,12 @@
 import 'dart:convert';
 
 class SendText {
-  String? sessionkey;
+  String? url;
   String? session;
   String? number;
   String? text;
   SendText({
-    this.sessionkey,
+    this.url,
     this.session,
     this.number,
     this.text,
@@ -20,7 +20,7 @@ class SendText {
     String? text,
   }) {
     return SendText(
-      sessionkey: sessionkey ?? this.sessionkey,
+      url: sessionkey ?? this.url,
       session: session ?? this.session,
       number: number ?? this.number,
       text: text ?? this.text,
@@ -29,7 +29,7 @@ class SendText {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'sessionkey': sessionkey,
+      'sessionkey': url,
       'session': session,
       'number': number,
       'text': text,
@@ -38,8 +38,7 @@ class SendText {
 
   factory SendText.fromMap(Map<String, dynamic> map) {
     return SendText(
-      sessionkey:
-          map['sessionkey'] != null ? map['sessionkey'] as String : null,
+      url: map['sessionkey'] != null ? map['sessionkey'] as String : null,
       session: map['session'] != null ? map['session'] as String : null,
       number: map['number'] != null ? map['number'] as String : null,
       text: map['text'] != null ? map['text'] as String : null,
@@ -53,24 +52,20 @@ class SendText {
 
   @override
   String toString() {
-    return 'SendText(sessionkey: $sessionkey, session: $session, number: $number, text: $text)';
+    return 'SendText( session: $session, number: $number, text: $text)';
   }
 
   @override
   bool operator ==(covariant SendText other) {
     if (identical(this, other)) return true;
 
-    return other.sessionkey == sessionkey &&
-        other.session == session &&
+    return other.session == session &&
         other.number == number &&
         other.text == text;
   }
 
   @override
   int get hashCode {
-    return sessionkey.hashCode ^
-        session.hashCode ^
-        number.hashCode ^
-        text.hashCode;
+    return session.hashCode ^ number.hashCode ^ text.hashCode;
   }
 }

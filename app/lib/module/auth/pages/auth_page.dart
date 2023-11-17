@@ -24,12 +24,12 @@ class _AuthPageState extends State<AuthPage> {
   void initState() {
     socketStore.connectAndListen();
     authStore.checkLogin().then((value) {
-      if (value) {
-        Modular.to.popAndPushNamed(
-          '/home',
-        );
-        socketStore.dispose();
-      }
+      // if (value) {
+      Modular.to.popAndPushNamed(
+        '/home',
+      );
+      socketStore.dispose();
+      // }
     });
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       FocusScope.of(context).requestFocus(nomeFN);

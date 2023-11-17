@@ -3,23 +3,20 @@ package py.com.flextech.resources;
 import org.apache.http.HttpStatus;
 
 import jakarta.annotation.security.PermitAll;
-import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import py.com.flextech.models.uazapi.hook.UazapiHookStatusInstance;
-import py.com.flextech.services.SocketService;
 
 @Path("/uazapi")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UazapiResource {
 
-  @Inject
-  private SocketService socketService;
+  // @Inject
+  // private SocketService socketService;
 
   @GET
   @PermitAll

@@ -1,6 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:send_zap/components/core/socket/socket_store.dart';
 import 'package:send_zap/module/contato/pages/contato_page.dart';
 import 'package:send_zap/module/home/pages/home_view.dart';
 
@@ -12,7 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final SocketStore socketStore = Modular.get();
+  // final SocketStore socketStore = Modular.get();
 
   final viewKey = GlobalKey();
 
@@ -20,7 +19,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    socketStore.connectAndListen();
+    // socketStore.connectAndListen();
     super.initState();
   }
 
@@ -51,7 +50,7 @@ class _HomePageState extends State<HomePage> {
             title: Text("Cerrar sesión"),
             body: Button(
                 onPressed: () async {
-                  await socketStore.logout();
+                  // await socketStore.logout();
                   Modular.to.pushReplacementNamed("/");
                 },
                 child: Text("logout")),
