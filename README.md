@@ -1,0 +1,1 @@
+Este proyecto, desarrollado durante la pandemia, tiene como objetivo registrar a las personas que ingresan a un establecimiento gastronómico. En ese contexto, resultaba fundamental llevar un control de los visitantes para identificar rápidamente posibles cadenas de contagio, facilitando el rastreo de contactos en caso de infecciones
